@@ -64,3 +64,45 @@ Reporter.o : Reporter.cpp $(DEPS)
 About1.o : About1.cpp $(DEPS)
 	$(CXX) -c About1.cpp $(CFLAGS)
 
+.PHONY: zipper
+zipper:
+	-rm dirwatch.tar
+	-rm dirwatch.tar.gz
+	tar -cf dirwatch.tar *.cpp main.h MainScreen.glade Makefile start.sh watch.jpg backend.pl Utility*
+	gzip -c dirwatch.tar > dirwatch.tar.gz
+
+.PHONY: install
+install:
+	-rm *.o
+	if ! test -d ~/DirecdtoryWatch; then \
+	mkdir ~/DirectoryWatch; fi;
+	cp DirectoryWatch ~/DirectoryWatch/DirectoryWatch
+	cp start.sh ~/DirectoryWatch/start.sh
+	cp watch.jpg ~/DirectoryWatch/watch.jpg
+	cp MainScreen.glade ~/DirectoryWatch/MainScreen.glade
+	cp backend.pl ~/DirectoryWatch/backend.pl
+	if ! test -d  ~/ProjDirWatch; then \
+	mkdir ~/ProjDirWatch; fi;
+#Now for the fun stuff, setting up the menu but only for the local user not all users.
+#If the following directories do not exist make them.
+	if ! test -d ~/.local/share/desktop-directories; then \
+	mkdir ~/.local/share/desktop-directories; fi;
+#
+	if ! test -d ~/.config/menus/applications-merged; then \
+	mkdir ~/.config/menus/applications-merged; fi;
+#
+	-cp Utility-DirectoryWatch.desktop         ~/.local/share/applications/Utility-DirectoryWatch.desktop
+	-cp Utility-DirectoryWatch-admin.desktop   ~/.local/share/applications/Utility-DirectoryWatch-admin.desktop
+	-cp Utility-DirectoryWatch.directory       ~/.local/share/desktop-directories/Utility-DirectoryWatch.directory
+	-cp Utility-DirectoryWatch.menu            ~/.config/menus/applications-merged/Utility-DirectoryWatch.men
+
+
+.PHONY: uninstall
+uninstall:
+	-rm -r ~/DirectoryWatch
+	-rm -r ~/ProjDirWatch
+	-rm ~/.local/share/applications/Utility-DirectoryWatch.desktop
+	-rm ~/.local/share/applications/Utility-DirectoryWatch-admin.desktop
+	-rm ~/.local/share/desktop-directories/Utility-DirectoryWatch.directory
+	-rm ~/.config/menus/applications-merged/Utility-DirectoryWatch.menu
+

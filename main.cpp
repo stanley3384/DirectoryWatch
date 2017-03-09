@@ -151,6 +151,7 @@ char cmd[100];
 char temp[100];
 	addmonitored (0, NULL);
 	std::cout << "MoniterDir = " << MoniterDir << std::endl;
+	std::cout << "WorkingProject = " << WorkingProject << std::endl;
 	strcpy(temp, MoniterDir);
 	strswap(temp, '/', '_');
 	strcpy(cmd, "mkdir ");
@@ -257,14 +258,26 @@ void on_About1_activate() {
 
 main (int argc, char **argv)
 {
+std::cout << "HOME" << getenv("HOME") << "\n" << std::endl;
+strcpy (WorkingPath, getenv("HOME"));
+strcat (WorkingPath, "/ProjDirWatch/");
+std::cout << "WorkingPath is " << WorkingPath << "\n" << std::endl;
 	std::cout << "Entered gtk_init." << std::endl;
         
         gtk_init (&argc, &argv);	//Gets gtk going.
         builder = gtk_builder_new ();
-std::cout << "builder1 done\n" << std::endl;
+//std::cout << "builder1 done\n" << std::endl;
         gtk_builder_add_from_file (builder, "MainScreen.glade", NULL);
-std::cout << "builder2 done\n" << std::endl;
+//std::cout << "builder2 done\n" << std::endl;
         window = GTK_WIDGET (gtk_builder_get_object (builder, "MainScreen"));
+
+if (NULL == window)
+{
+    /* Print out the error. You can use GLib's message logging  */
+    fprintf(stderr, "Unable to file object with id \"MainScreen\" \n");
+}
+
+
         MainScreenHeader = GTK_WIDGET (gtk_builder_get_object (builder, "MainScreenHeader"));
         ProjectLabel = GTK_WIDGET (gtk_builder_get_object (builder, "ProjectLabel"));
         Project = GTK_ENTRY (gtk_builder_get_object (builder, "Project"));
@@ -274,9 +287,10 @@ std::cout << "builder2 done\n" << std::endl;
         Status = GTK_ENTRY (gtk_builder_get_object (builder, "Status"));
         statuslabel = GTK_WIDGET (gtk_builder_get_object (builder, "statuslLabel"));
 
-
         gtk_builder_connect_signals (builder, NULL);          
         g_object_unref (G_OBJECT (builder));
+
+//std::cout << "builder 3 done\n" << std::endl;
 
         gtk_widget_show (window);
 	std::cout << "Main set up and showing window." << std::endl;

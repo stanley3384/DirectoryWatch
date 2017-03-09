@@ -14,7 +14,7 @@
           <object class="GtkLabel" id="MainScreenHeader">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Enter the name of the system below.  (ie Freds_PC)</property>
+            <property name="label" translatable="yes">The name of the selected system is shown below.  (ie Freds_PC)</property>
             <property name="angle">0.029999999329447746</property>
             <attributes>
               <attribute name="weight" value="heavy"/>
@@ -350,6 +350,7 @@
     <property name="program_name">Change Watch</property>
     <property name="version">Version Alpha vsn 0.0</property>
     <property name="copyright" translatable="yes">Copyright tbd</property>
+    <property name="website_label" translatable="yes">DirectoryWatch is used to monitor changes that occured over time.</property>
     <property name="license" translatable="yes">Change Watch is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as 
 published by the Free Software Foundation; either version 2 of the 

@@ -20,8 +20,6 @@ char temp[400];
 	strcpy(cmd, "ls -l  ");
 	strcat(cmd, WorkingProject);
 	strcat (cmd, " > temp0.txt 2>&1");	//std error to file proj.txt
-//	std::cout << "cmd is = " << cmd << std::endl;
-//	gtk_entry_set_text(Status, "This MD5 operation takes time."); //just show activity.
 	if(0 == system(cmd))	{
 		system ("awk '{ print $9 }' temp0.txt > temp1.txt");
 		std::cout << "cmd was okay have results for ls -l " << std::endl; 
@@ -36,7 +34,6 @@ char temp[400];
 				strswap(temp, '_', '/');	//Mske it like unix file
 				gtk_entry_set_text(Status, data);
 				strcpy(cmd, "md5deep -tr ");
-//				strcat(cmd, WorkingProject);
 				strcat(cmd, temp);
 				strcat(cmd, "  > ");	//cat a space char
 				strcat(cmd, WorkingProject);
