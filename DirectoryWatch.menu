@@ -1,0 +1,11 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+"http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
+<Menu>
+	<Name>Applications</Name>
+	<Menu>
+		<Name>DirectoryWatchDir</Name>
+		<Directory>DirectoryWatch.directory</Directory>
+		<Include>
+			<Filename>DirectoryWatch.desktop</Filename>
+		</Include>
+	</Menu>

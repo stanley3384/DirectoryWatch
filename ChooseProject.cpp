@@ -10,6 +10,8 @@
 extern gchar WorkingProject[];
 extern gchar WorkingPath[];
 
+extern 	GtkWidget *add_dir, *del_dir, *show_dir, *ck_pop, *ck_val, *ck_rep_gen, *ck_rep;
+
 
 static	GtkBuilder	*builder;
 static	GtkWidget	*ChooseProjectDialog;
@@ -17,7 +19,6 @@ static	GtkFileChooser	*filechooser;
 static	GtkEntry	*ProjectName;
 static	GtkButton	*Select, *Cancel;
 
-//gchar	*cName_pt;
 /*==================================================================*/
 extern "C"
 int on_ChooseProjectDialog_delete_event()	{
@@ -44,6 +45,14 @@ int sp1;
 //std::cout << "sp1 is = " << sp1 << std::endl;
 //	if(1 == sp1)
 		{
+		gtk_widget_set_sensitive(add_dir, TRUE);
+		gtk_widget_set_sensitive(del_dir, TRUE);
+		gtk_widget_set_sensitive(show_dir, TRUE);
+		gtk_widget_set_sensitive(ck_pop, TRUE);
+		gtk_widget_set_sensitive(ck_val, TRUE);
+		gtk_widget_set_sensitive(ck_rep_gen, TRUE);
+		gtk_widget_set_sensitive(ck_rep, TRUE);
+
 		gtk_widget_destroy (ChooseProjectDialog);
 		gtk_main_quit();
 		}
@@ -68,8 +77,6 @@ void chooseproject (int argc, char **argv)
 	filechooser = GTK_FILE_CHOOSER(gtk_builder_get_object (builder, "ChooseProjectDialog"));
 	ProjectName = GTK_ENTRY(gtk_builder_get_object (builder, "ProjectName"));
 	Select  = GTK_BUTTON(gtk_builder_get_object (builder, "Select"));
-
-
 
         gtk_builder_connect_signals (builder, NULL);          
         g_object_unref (G_OBJECT (builder));

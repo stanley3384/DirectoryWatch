@@ -1,3 +1,6 @@
+
+/*	This module is to display the CHANGED, MISSING or NEW files.*/
+
 #include <gtk/gtk.h>
 #include <string.h>
 #include <stdlib.h>
@@ -15,23 +18,21 @@ extern gchar WorkingProject[];
 
 static	GtkBuilder	*builder;
 static	GtkWidget	*Reportwin;
-static	GtkTextView	*changedview, *newview, *missingview;
-static	GtkTextBuffer	*buffchanged, *buffnew, *buffmissing;
+static	GtkTextView	*changedview, *newview, *missingview, *hashview, *deltaview;
+static	GtkTextBuffer	*buffchanged, *buffnew, *buffmissing, *buffhasherr, *buffdeltaerr;
 static	GtkTextIter	myiter;
-gint	line, offset;
+static	gint	line, offset;
 
-void fillbuff(GtkTextBuffer *token1, const char *token2);
+//void fillbuff(GtkTextBuffer *token1, const char *token2);
 
 extern "C"
 int on_Report_win_delete_event()	{
 	std::cout << "Report delete.\n" << std::endl;
 	gtk_main_quit();
 	return(FALSE);			}
-
+//	================================================================
 void	reporter(int argc, char **argv) 
 {
-
-//std::cout << "In reporter1.\n"<< std::endl;
         gtk_init (&argc, &argv);
         
         builder = gtk_builder_new ();
@@ -41,10 +42,14 @@ void	reporter(int argc, char **argv)
 	changedview = GTK_TEXT_VIEW(gtk_builder_get_object (builder, "ChangedView"));
 	newview = GTK_TEXT_VIEW(gtk_builder_get_object (builder, "NewView"));
 	missingview = GTK_TEXT_VIEW(gtk_builder_get_object (builder, "MissingView"));
+	hashview = GTK_TEXT_VIEW(gtk_builder_get_object (builder, "HashErrors"));
+	deltaview = GTK_TEXT_VIEW(gtk_builder_get_object (builder, "DeltaErrors"));
 
 	buffchanged	= gtk_text_view_get_buffer (GTK_TEXT_VIEW (changedview));
 	buffnew		= gtk_text_view_get_buffer (GTK_TEXT_VIEW (newview));
 	buffmissing	= gtk_text_view_get_buffer (GTK_TEXT_VIEW (missingview));
+	buffhasherr	= gtk_text_view_get_buffer (GTK_TEXT_VIEW (hashview));
+	buffdeltaerr	= gtk_text_view_get_buffer (GTK_TEXT_VIEW (deltaview));
 
         gtk_builder_connect_signals (builder, NULL);          
         g_object_unref (G_OBJECT (builder));
@@ -66,6 +71,8 @@ std::cout << data << std::endl;
 fillbuff(buffchanged, "/changed.log");
 fillbuff(buffnew, "/new.log");
 fillbuff(buffmissing, "/missing.log");
+fillbuff(buffhasherr, "/Hasherr.log");
+fillbuff(buffdeltaerr, "/Deltaerr.log");
 
 //	infile.close();	
 	gtk_widget_show (Reportwin);
@@ -74,7 +81,7 @@ fillbuff(buffmissing, "/missing.log");
 	std::cout << "Exiting Reporter." << std::endl;
         return ;
 }
-
+/*
 void fillbuff(GtkTextBuffer *token1, const char *token2) {
 GtkTextIter	myiter;
 char	data[400];
@@ -100,7 +107,7 @@ std::cout << "in fillbuff\n" << std::endl;
 		line ++;
 	}
 		infile.close();
-}
+} */
 
 
 

@@ -11,12 +11,12 @@ LDFLAGS = $(SDL_LIB)
 
 DEPS = MainScreen.glade main.h
 
-OBJ = main.o NewProject.o Xref.o ChooseProject.o ConfirmProject.o RootPath.o DeleteProject.o DeleteProject.o WarningDelProj.o AddMonitored.o populate.o PopWarning.o functions.o DeleteDirectory.o Reporter.o About1.o 
+OBJ = main.o NewProject.o Xref.o ChooseProject.o ConfirmProject.o RootPath.o DeleteProject.o DeleteProject.o WarningDelProj.o AddMonitored.o populate.o PopWarning.o functions.o DeleteDirectory.o Reporter.o Dir_ls.o About1.o projhelp.o dirhelp.o checkhelp.o
 
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lGLEW -lGL
 
 DirectoryWatch: $(OBJ)
-	$(CXX) -o $@ $^ $(CFLAGS) $(LDFLAGS) $(LINKER_FLAGS)
+	$(CXX) -o $@.elf $^ $(CFLAGS) $(LDFLAGS) $(LINKER_FLAGS)
 
 
 main.o : main.cpp $(DEPS)
@@ -40,6 +40,9 @@ RootPath.o : RootPath.cpp $(DEPS)
 DeleteProject.o : DeleteProject.cpp $(DEPS)
 	$(CXX) -c DeleteProject.cpp $(CFLAGS)
 
+projhelp.o : projhelp.cpp $(DEPS)
+	$(CXX) -c projhelp.cpp $(CFLAGS)
+
 DeleteDirectory.o : DeleteDirectory.cpp $(DEPS)
 	$(CXX) -c DeleteDirectory.cpp $(CFLAGS)
 
@@ -49,8 +52,14 @@ WarningDelProj.o : WarningDelProj.cpp $(DEPS)
 AddMonitored.o : AddMonitored.cpp $(DEPS)
 	$(CXX) -c AddMonitored.cpp $(CFLAGS)
 
+dirhelp.o : dirhelp.cpp $(DEPS)
+	$(CXX) -c dirhelp.cpp $(CFLAGS)
+
 populate.o : populate.cpp $(DEPS)
 	$(CXX) -c populate.cpp $(CFLAGS)
+
+checkhelp.o : checkhelp.cpp $(DEPS)
+	$(CXX) -c checkhelp.cpp $(CFLAGS)
 
 PopWarning.o : PopWarning.cpp $(DEPS)
 	$(CXX) -c PopWarning.cpp $(CFLAGS)
@@ -61,26 +70,46 @@ functions.o : functions.cpp $(DEPS)
 Reporter.o : Reporter.cpp $(DEPS)
 	$(CXX) -c Reporter.cpp $(CFLAGS)
 
+Dir_ls.o : Dir_ls.cpp $(DEPS)
+	$(CXX) -c Dir_ls.cpp $(CFLAGS)
+
 About1.o : About1.cpp $(DEPS)
 	$(CXX) -c About1.cpp $(CFLAGS)
 
 .PHONY: zipper
 zipper:
-	-rm dirwatch.tar
 	-rm dirwatch.tar.gz
-	tar -cf dirwatch.tar *.cpp main.h MainScreen.glade Makefile start.sh watch.jpg backend.pl Utility*
+	tar -cf dirwatch.tar *.cpp main.h MainScreen.glade Makefile start.sh watch.jpg backend.pl *.desktop *.menu *.directory DirectoryWatch.odt
 	gzip -c dirwatch.tar > dirwatch.tar.gz
+	-rm dirwatch.tar
+
+.PHONY: update
+update:
+	cd ~/DirectoryWatch
+#	-rm *.o
+	cp DirectoryWatch.elf ~/DirectoryWatch/DirectoryWatch.elf
+	chmod +x ~/DirectoryWatch/DirectoryWatch.elf
+	cp start.sh ~/DirectoryWatch/start.sh
+	chmod +x ~/DirectoryWatch/start.sh
+	cp backend.pl ~/DirectoryWatch/backend.pl
+	chmod +x ~/DirectoryWatch/backend.pl
+	cp watch.jpg ~/DirectoryWatch/watch.jpg
+	cp MainScreen.glade ~/DirectoryWatch/MainScreen.glade
 
 .PHONY: install
 install:
-	-rm *.o
+#	-rm *.o
 	if ! test -d ~/DirecdtoryWatch; then \
 	mkdir ~/DirectoryWatch; fi;
-	cp DirectoryWatch ~/DirectoryWatch/DirectoryWatch
+	cp DirectoryWatch.elf ~/DirectoryWatch/DirectoryWatch.elf
+	chmod +x ~/DirectoryWatch/DirectoryWatch.elf
 	cp start.sh ~/DirectoryWatch/start.sh
+	chmod +x ~/DirectoryWatch/start.sh
+	cp backend.pl ~/DirectoryWatch/backend.pl
+	chmod +x ~/DirectoryWatch/backend.pl
 	cp watch.jpg ~/DirectoryWatch/watch.jpg
 	cp MainScreen.glade ~/DirectoryWatch/MainScreen.glade
-	cp backend.pl ~/DirectoryWatch/backend.pl
+
 	if ! test -d  ~/ProjDirWatch; then \
 	mkdir ~/ProjDirWatch; fi;
 #Now for the fun stuff, setting up the menu but only for the local user not all users.
@@ -91,18 +120,19 @@ install:
 	if ! test -d ~/.config/menus/applications-merged; then \
 	mkdir ~/.config/menus/applications-merged; fi;
 #
-	-cp Utility-DirectoryWatch.desktop         ~/.local/share/applications/Utility-DirectoryWatch.desktop
-	-cp Utility-DirectoryWatch-admin.desktop   ~/.local/share/applications/Utility-DirectoryWatch-admin.desktop
-	-cp Utility-DirectoryWatch.directory       ~/.local/share/desktop-directories/Utility-DirectoryWatch.directory
-	-cp Utility-DirectoryWatch.menu            ~/.config/menus/applications-merged/Utility-DirectoryWatch.men
+	if ! test -d ~/.local/share/applications; then \
+	mkdir ~/.local/share/applications; fi;
+
+	-cp DirectoryWatch.desktop         ~/.local/share/applications/DirectoryWatch.desktop
+	-cp DirectoryWatch.directory       ~/.local/share/desktop-directories/DirectoryWatch.directory
+	-cp DirectoryWatch.menu            ~/.config/menus/applications-merged/DirectoryWatch.menu
 
 
 .PHONY: uninstall
 uninstall:
 	-rm -r ~/DirectoryWatch
 	-rm -r ~/ProjDirWatch
-	-rm ~/.local/share/applications/Utility-DirectoryWatch.desktop
-	-rm ~/.local/share/applications/Utility-DirectoryWatch-admin.desktop
-	-rm ~/.local/share/desktop-directories/Utility-DirectoryWatch.directory
-	-rm ~/.config/menus/applications-merged/Utility-DirectoryWatch.menu
+	-rm ~/.local/share/applications/DirectoryWatch.desktop
+	-rm ~/.local/share/desktop-directories/DirectoryWatch.directory
+	-rm ~/.config/menus/applications-merged/DirectoryWatch.menu
 

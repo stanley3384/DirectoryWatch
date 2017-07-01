@@ -1,7 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
+Type=Application
+Terminal=true
 
+Exec=/home/stan/DirectoryWatch/start.sh
 Icon=/home/stan/DirectoryWatch/watch.jpg
 
-Name=DirectoryWatfh
+Name=DirectoryWatch
 Name[fr]=FichierSurveillant
+
