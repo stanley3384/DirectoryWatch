@@ -14,7 +14,7 @@
         GtkWidget	*window;
 	GtkWidget	*MainScreenHeader;
 	GtkWidget	*ProjectLabel, *statuslabel, *rootlabel;
-	GtkEntry	*Project, *Status, *ROOT;
+	GtkEntry	*Project, *CoresNo, *Status, *ROOT;
 
 	GtkWidget	*add_dir, *del_dir, *show_dir, *ck_pop, *ck_val, *ck_rep_gen, *ck_rep;
 
@@ -155,6 +155,9 @@ std::cout << "WorkingProject = " << WorkingProject << std::endl;
 }
 extern "C"
 int on_ChooseProject_activate()	{
+
+cores(0, NULL);
+
 std::string line;
 char temp[100];
 	std::cout << "in chooseproject" << std::endl;
@@ -349,6 +352,7 @@ if (NULL == window)
         MainScreenHeader = GTK_WIDGET (gtk_builder_get_object (builder, "MainScreenHeader"));
         ProjectLabel = GTK_WIDGET (gtk_builder_get_object (builder, "ProjectLabel"));
         Project = GTK_ENTRY (gtk_builder_get_object (builder, "Project"));
+	CoresNo = GTK_ENTRY (gtk_builder_get_object (builder, "CoresNo"));
 	ROOT = GTK_ENTRY (gtk_builder_get_object (builder, "ROOT"));
         rootlabel = GTK_WIDGET (gtk_builder_get_object (builder, "rootlLabel"));
 

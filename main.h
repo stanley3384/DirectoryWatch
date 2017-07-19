@@ -5,6 +5,7 @@
 //void openfile (int argc, char **argv);
 
 void	newproject(int argc, char **argv);
+int cores(int argc, char **argv);
 void	chooseproject(int argc, char **argv);
 int	ConfirmProject(int argc, char **argv);
 void	deleteproject(int argc, char **argv);

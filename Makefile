@@ -11,7 +11,7 @@ LDFLAGS = $(SDL_LIB)
 
 DEPS = MainScreen.glade main.h
 
-OBJ = main.o NewProject.o Xref.o ChooseProject.o ConfirmProject.o RootPath.o DeleteProject.o DeleteProject.o WarningDelProj.o AddMonitored.o populate.o PopWarning.o functions.o DeleteDirectory.o Reporter.o Dir_ls.o About1.o projhelp.o dirhelp.o checkhelp.o
+OBJ = main.o NewProject.o Xref.o ChooseProject.o ConfirmProject.o RootPath.o DeleteProject.o DeleteProject.o WarningDelProj.o AddMonitored.o populate.o PopWarning.o functions.o DeleteDirectory.o Reporter.o Dir_ls.o About1.o projhelp.o dirhelp.o checkhelp.o cores.o
 
 LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lGLEW -lGL
 
@@ -75,6 +75,9 @@ Dir_ls.o : Dir_ls.cpp $(DEPS)
 
 About1.o : About1.cpp $(DEPS)
 	$(CXX) -c About1.cpp $(CFLAGS)
+
+cores.o : cores.cpp $(DEPS)
+	$(CXX) -c cores.cpp $(CFLAGS)
 
 .PHONY: zipper
 zipper:
