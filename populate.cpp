@@ -12,6 +12,8 @@ extern gchar WorkingProject[];
 extern gchar RootPath[];
 extern GtkEntry *Status;
 
+extern	gchar	No_of_cores[5];		//No of cores on system motherboard.
+
 extern gchar	file2show[200];	//This should be set to the directories or errors to be shown in widget
 
 void	populate()	{
@@ -55,7 +57,11 @@ char temp[400];
 				strcpy(temp, data);
 				strswap(temp, '_', '/');	//Mske it like unix file
 //				gtk_entry_set_text(Status, data);
-				strcpy(cmd, "md5deep -tr ");
+				strcpy(cmd, "md5deep -j");
+
+				strcat(cmd, No_of_cores);	//No of cores on system motherboard.
+				strcat(cmd, " -t -r ");
+
 				strcat(cmd, temp);
 				strcat(cmd, "  > ");	//cat a space char
 				strcat(cmd, dir2do);
@@ -142,7 +148,11 @@ char temp[400];
 				strcpy(temp, data);
 				strswap(temp, '_', '/');	//Mske it like unix file
 //				gtk_entry_set_text(Status, data);
-				strcpy(cmd, " md5deep -rwX ");
+				strcpy(cmd, " md5deep -j");
+
+				strcat(cmd, No_of_cores);	//No of cores on system motherboard.
+				strcat(cmd, " -r -w -X ");
+
 				strcat(cmd, dir2do);
 				strcat(cmd, "/hash.log ");
 
