@@ -51,6 +51,7 @@
   <object class="GtkActionGroup" id="actiongroup3"/>
   <object class="GtkActionGroup" id="actiongroup4"/>
   <object class="GtkActionGroup" id="actiongroup5"/>
+  <object class="GtkActionGroup" id="actiongroup6"/>
   <object class="GtkFileFilter" id="filefilter1">
     <mime-types>
       <mime-type>directory</mime-type>
@@ -417,7 +418,7 @@
               <object class="GtkLabel" id="roolabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">OS undner validation ROOT =</property>
+                <property name="label" translatable="yes">OS undner validation's ROOT =</property>
                 <property name="justify">right</property>
                 <property name="ellipsize">end</property>
                 <property name="width_chars">30</property>
