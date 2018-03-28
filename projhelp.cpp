@@ -19,7 +19,7 @@ int ProjHelp_delete_event()	{
 	return(FALSE);		} 
 
 extern "C"
-void on_ProjHelpQuit_pressed()	{
+void on_ProjHelpQuit_clicked()	{
 	gtk_widget_destroy (help);
 	gtk_main_quit();
 	return;			}

@@ -17,14 +17,14 @@ static	int		retval;
 extern	gchar	deldircmd[];
 
 extern "C"
-void on_WDP_yes_pressed()	{
+void on_WDP_yes_clicked()	{
 	retval = 1;
 	gtk_widget_destroy (warning);
 	gtk_main_quit();
 	return;			}
 
 extern "C"
-void on_WDP_no_pressed()	{
+void on_WDP_no_clicked()	{
 	retval = 0;
 	gtk_widget_destroy (warning);
 	gtk_main_quit();

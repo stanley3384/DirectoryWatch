@@ -38,7 +38,7 @@ void on_ChooseProjectDialog_selection_changed(GtkFileChooser *fs)  {
 		}
 	return;  } 
 extern "C"
-void on_ChooseProjectOkay_pressed()	{
+void on_ChooseProjectOkay_clicked()	{
 int sp1;
 	if(1 == ConfirmProject(0, NULL))	//Confirm selection.
 //sp1 = ConfirmProject(0, NULL);
@@ -58,8 +58,8 @@ int sp1;
 		}
 	return;				}
 extern "C"
-void on_ChooseProjectCancel_pressed (void) 	{ 
-	std::cout << "Choose Cancel button pressed" << std::endl;
+void on_ChooseProjectCancel_clicked (void) 	{ 
+	std::cout << "Choose Cancel button clicked" << std::endl;
 	strcpy(WorkingProject, "\0");	//Clear project
 	gtk_widget_destroy (ChooseProjectDialog);
 	gtk_main_quit ();

@@ -25,14 +25,14 @@ int on_DeleteProjectDialog_delete_event()	{
 	gtk_main_quit();
 	return(FALSE);			}
 extern "C"
-void on_ProjectDeleteCancel_pressed (void) 	{ 
-	std::cout << "Delete Cancel button pressed" << std::endl;
+void on_ProjectDeleteCancel_clicked (void) 	{ 
+	std::cout << "Delete Cancel button clicked" << std::endl;
 	strcpy(WorkingProject, "\0");	//Do not delete, it's null
 	gtk_widget_destroy (DeleteProjectDialog);
 	gtk_main_quit ();
 	return;				} 
 extern "C"
-void on_ProjectDelete_pressed()	{
+void on_ProjectDelete_clicked()	{
 	gtk_widget_destroy (DeleteProjectDialog);
 	gtk_main_quit();
 	return;			}			

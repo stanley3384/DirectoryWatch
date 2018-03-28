@@ -24,16 +24,16 @@ int on_ProjectConfirm_delete_event()	{
 	return(FALSE);			}
 
 extern "C"
-void	on_ProjConOkay_pressed(void)	{
-	std::cout << "Proj Okay pressed" << std::endl; 
+void	on_ProjConOkay_clicked(void)	{
+	std::cout << "Proj Okay clicked" << std::endl; 
 	retval = 1;
 	gtk_widget_destroy (ProjectConfirm);
 	gtk_main_quit ();
 	return;				}
 
 extern "C"
-void	on_ProjConCan_pressed(void)	{
-	std::cout << "Proj can pressed." << std::endl;
+void	on_ProjConCan_clicked(void)	{
+	std::cout << "Proj can clicked." << std::endl;
 	retval = 0;
 	gtk_widget_destroy (ProjectConfirm);
 	gtk_main_quit ();

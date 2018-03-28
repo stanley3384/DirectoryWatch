@@ -14,14 +14,14 @@ static	GtkButton	*yes, *no;
 static  int	retval;
 
 extern "C"
-void on_PopWarningYes_pressed()	{
+void on_PopWarningYes_clicked()	{
 	retval = 1;
 	gtk_widget_destroy (warning);
 	gtk_main_quit();
 	return;			}
 
 extern "C"
-void on_PopWarningNo_pressed()	{
+void on_PopWarningNo_clicked()	{
 	retval = 0;
 	gtk_widget_destroy (warning);
 	gtk_main_quit();

@@ -19,7 +19,7 @@ int WinCheckHelp_delete_event()	{
 	return(FALSE);		} 
 
 extern "C"
-void CheckHelpQuit_pressed()	{
+void CheckHelpQuit_clicked()	{
 	gtk_widget_destroy (help);
 	gtk_main_quit();
 	return;			}

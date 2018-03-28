@@ -26,8 +26,8 @@ int on_AddMonitored_delete_event()	{
 	gtk_main_quit();
 	return(FALSE);			}
 extern "C"
-void on_CanMonitored_pressed (void) 	{ 
-	std::cout << "AddMonitored Cancel button pressed" << std::endl;
+void on_CanMonitored_clicked (void) 	{ 
+	std::cout << "AddMonitored Cancel button clicked" << std::endl;
 	strcpy(MoniterDir, "\0");	//Clear project
 	gtk_widget_destroy (AddMonitored);
 	gtk_main_quit ();
@@ -47,7 +47,7 @@ void on_AddMonitored_current_folder_changed(GtkFileChooser *fs)  {
 
 	return;  } 
 extern "C"
-void on_SaveMonitored_pressed()	{
+void on_SaveMonitored_clicked()	{
 	gtk_widget_destroy (AddMonitored);
 	gtk_main_quit();
 	return;				}

@@ -25,7 +25,7 @@ int on_NewProjectDialog_delete_event(GObject *object, gpointer user_data)
 }
 
 extern "C"
-void on_button1_pressed() {
+void on_button1_clicked() {
 	std::cout << "button1 clicked." << std::endl;
 	const gchar *cName_pt;
 	cName_pt = gtk_entry_get_text (entry1);
@@ -34,12 +34,12 @@ void on_button1_pressed() {
 	std::cout <<"Exiting on open clicked." << std::endl;
 	return ;  }
 extern"C"
-void on_button2_pressed()	{
-	std::cout << "button2 pressed" << std::endl;
+void on_button2_clicked()	{
+	std::cout << "button2 clicked" << std::endl;
 	gtk_main_quit();
 	return;			}
 extern"C"
-void on_button3_pressed()	{
+void on_button3_clicked()	{
 	std::cout << "help on the way." << std::endl;
 	gtk_main_quit();
 	return;			}

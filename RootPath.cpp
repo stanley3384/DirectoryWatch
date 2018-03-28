@@ -26,13 +26,13 @@ void on_RootPathDialog_delete_event()	{
 	gtk_main_quit();
 	return;			}
 extern "C"
-void on_RootCancel_pressed (void) 	{ 
+void on_RootCancel_clicked (void) 	{ 
 	strcpy(RootPath, "\0");	//Clear any provious stuff.
 	gtk_widget_destroy (RootPathDialog);
 	gtk_main_quit ();
 	return;				}
 extern "C"
-void on_RootOkay_pressed()	{
+void on_RootOkay_clicked()	{
 	gtk_widget_destroy (RootPathDialog);
 	gtk_main_quit ();
 	return;			}

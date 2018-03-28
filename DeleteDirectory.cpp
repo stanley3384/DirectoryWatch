@@ -26,14 +26,14 @@ int on_DeleteDirDialog_delete_event()	{
 	gtk_main_quit();
 	return(FALSE);			}
 extern "C"
-void on_DirDeleteCancel_pressed (void) 	{ 
-	std::cout << "Delete Cancel button pressed" << std::endl;
+void on_DirDeleteCancel_clicked (void) 	{ 
+	std::cout << "Delete Cancel button clicked" << std::endl;
 	strcpy(MoniterDir, "\0");	//Do not delete, it's null
 	gtk_widget_destroy (DeleteDirDialog);
 	gtk_main_quit ();
 	return;				} 
 extern "C"
-void on_DirDelete_pressed()	{
+void on_DirDelete_clicked()	{
 	gtk_widget_destroy (DeleteDirDialog);
 	gtk_main_quit();
 	return;			}			

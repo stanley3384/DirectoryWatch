@@ -19,7 +19,7 @@ int DirHelp_delete_event()	{
 	return(FALSE);		} 
 
 extern "C"
-void on_DirHelpQuit_pressed()	{
+void on_DirHelpQuit_clicked()	{
 	gtk_widget_destroy (help);
 	gtk_main_quit();
 	return;			}

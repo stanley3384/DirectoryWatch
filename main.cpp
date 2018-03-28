@@ -59,8 +59,6 @@ std::string line;
 	strcpy(cmd, "mkdir --verbose ");	//Create the new Project directory.
 //	strcat(cmd, WorkingPath);
 	strcat(cmd, WorkingProject);
-
-
 	strcat (cmd, " > proj.txt 2>&1");	//mkdir, std error to file proj.txt
 
 	if(0 == system(cmd))
@@ -187,6 +185,54 @@ int ProjectHelp_activate() {
 	std::cout << "Project Help activated." << std::endl;
 	projhelp(0, NULL);
 }
+/*******************************************************************************/
+extern "C"
+void on_LinuxDefault_activate() {
+char cmd[100];
+char temp[100];
+int i;
+char dir0[] = { "/bin" };
+char dir1[] = { "/boot" };
+char dir2[] = { "/sbin" };
+char dir3[] = { "/usr/bin" };
+char dir4[] = { "/usr/sbin" };
+char dir5[] = { "/usr/local/bin" };
+char dir6[] = { "/usr/local/sbin" };
+
+char *values[5];
+int index;
+values[0] = dir0;
+values[1] = dir1;
+values[2] = dir2;
+values[3] = dir3;
+values[4] = dir4;
+values[5] = dir5;
+values[6] = dir6;
+
+std::cout << "It's in Linux default directories add" << std::endl;
+
+	gtk_entry_set_text(Status, "\0");
+    for (i = 0; i <= 6; ++i)
+        {
+
+        strcpy(temp, values[i]);
+
+	    std::cout << "MoniterDir = " << MoniterDir << std::endl;
+	    std::cout << "WorkingProject = " << WorkingProject << std::endl;
+
+	    strswap(temp, '/', '_');
+	    strcpy(cmd, "mkdir ");
+	    strcat(cmd, WorkingProject);
+	    strcat(cmd, "/");
+	    strcat(cmd, temp);
+	    std::cout << "Add linuxdir cmd = " << cmd <<std::endl;
+	    if(0 == system(cmd))
+		    { gtk_entry_set_text(Status, "Added directory okay."); }
+	    else
+		    { gtk_entry_set_text(Status, "oops error with mkdir."); }
+        }
+	return;	}
+
 /*******************************************************************************/
 extern "C"
 void on_AddDirectory_activate()	{
