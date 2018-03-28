@@ -20,13 +20,14 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="CheckHelpQuit">
-                <property name="label">gtk-quit</property>
+                <property name="label">Close the window to continue.</property>
                 <property name="width_request">500</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-                <signal name="pressed" handler="CheckHelpQuit_pressed" swapped="no"/>
+                <property name="relief">none</property>
+                <property name="yalign">0.44999998807907104</property>
+                <signal name="clicked" handler="on_CheckHelpQuit_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -194,6 +195,15 @@
                         <property name="use_underline">True</property>
                         <property name="use_stock">True</property>
                         <signal name="activate" handler="on_DeleteDirectory_activate" swapped="no"/>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkMenuItem" id="LinuxDefault">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">LinuxDevault</property>
+                        <property name="use_underline">True</property>
+                        <signal name="activate" handler="on_LinuxDefault_activate" swapped="no"/>
                       </object>
                     </child>
                     <child>
@@ -575,7 +585,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_SaveMonitored_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_SaveMonitored_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -590,7 +600,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_CanMonitored_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_CanMonitored_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -647,7 +657,7 @@ MA 02110-1301, USA.</property>
                 <property name="receives_default">True</property>
                 <property name="relief">none</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_ChooseProjectOkay_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ChooseProjectOkay_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -662,7 +672,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_ChooseProjectCancel_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ChooseProjectCancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -681,6 +691,9 @@ MA 02110-1301, USA.</property>
           <object class="GtkEntry" id="ProjectName">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="shadow_type">etched-out</property>
+            <property name="progress_fraction">0.070000000000000007</property>
+            <property name="placeholder_text" translatable="yes">The selected project in this field.</property>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -765,7 +778,7 @@ MA 02110-1301, USA.</property>
                 <property name="relief">none</property>
                 <property name="use_stock">True</property>
                 <property name="image_position">bottom</property>
-                <signal name="pressed" handler="on_ProjConOkay_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ProjConOkay_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -781,7 +794,7 @@ MA 02110-1301, USA.</property>
                 <property name="receives_default">True</property>
                 <property name="hexpand">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_ProjConCan_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ProjConCan_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -822,7 +835,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_DirDelete_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_DirDelete_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -837,7 +850,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_DirDeleteCancel_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_DirDeleteCancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -893,7 +906,7 @@ MA 02110-1301, USA.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_ProjectDelete_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ProjectDelete_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -909,7 +922,7 @@ MA 02110-1301, USA.</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
                 <property name="xalign">0.47999998927116394</property>
-                <signal name="pressed" handler="on_ProjectDeleteCancel_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ProjectDeleteCancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1007,7 +1020,7 @@ Yes to do it, No to exit.</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
                 <property name="xalign">0.51999998092651367</property>
-                <signal name="pressed" handler="on_WDP_yes_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_WDP_yes_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1022,7 +1035,7 @@ Yes to do it, No to exit.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_WDP_no_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_WDP_no_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1115,7 +1128,7 @@ Yes to do it, No to exit.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_button1_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_button1_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1130,7 +1143,7 @@ Yes to do it, No to exit.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_button2_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_button2_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1145,7 +1158,7 @@ Yes to do it, No to exit.</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_button3_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_button3_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1233,7 +1246,7 @@ refreshed.
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_PopWarningNo_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_PopWarningNo_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1248,7 +1261,7 @@ refreshed.
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_PopWarningYes_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_PopWarningYes_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1404,7 +1417,7 @@ refreshed.
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_RootOkay_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_RootOkay_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1419,7 +1432,7 @@ refreshed.
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_RootCancel_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_RootCancel_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1506,7 +1519,7 @@ Watching over an empty directory will show in the error logs and  may cause some
                 <property name="receives_default">True</property>
                 <property name="relief">none</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_DirHelpQuit_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_DirHelpQuit_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -1556,7 +1569,7 @@ Once that is in place projects can be added or deleted in the normal way.</prope
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="use_stock">True</property>
-                <signal name="pressed" handler="on_ProjHelpQuit_pressed" swapped="no"/>
+                <signal name="clicked" handler="on_ProjHelpQuit_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
